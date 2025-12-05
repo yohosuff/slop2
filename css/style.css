@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+}
+
+#gameCanvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    touch-action: none;
+    background: transparent;
+}
+
+#hud {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.hud-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #00ffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.label {
+    color: #00ffff;
+}
+
+#health-bar {
+    width: 8rem;
+    height: 1.5rem;
+    background: rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+#health-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff0000, #ff6600);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+    padding: 2rem;
+    text-align: center;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+.screen h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.screen p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #ffffff;
+}
+
+.screen button {
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+    background: linear-gradient(135deg, #00ffff, #00aaff);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px #00ffff;
+    transition: all 0.3s ease;
+}
+
+.screen button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 30px #00ffff;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+    }
+    to {
+        text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 80px #00ffff;
+    }
+}
+
+@media (max-width: 768px) {
+    .screen h1 {
+        font-size: 2rem;
+    }
+
+    .screen p {
+        font-size: 1rem;
+    }
+
+    .screen button {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .hud-item {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    #health-bar {
+        width: 5rem;
+        height: 1.2rem;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .screen h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .screen button {
+        margin-top: 1rem;
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    #hud {
+        top: 0.5rem;
+        left: 0.5rem;
+        right: 0.5rem;
+        gap: 0.5rem;
+    }
+}

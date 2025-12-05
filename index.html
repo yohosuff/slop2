@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
+    <meta name="theme-color" content="#000000">
+    <title>Space Shooter</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="hud">
+            <div class="hud-item">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="hud-item">
+                <span class="label">Health:</span>
+                <div id="health-bar">
+                    <div id="health-fill"></div>
+                </div>
+            </div>
+            <div class="hud-item">
+                <span class="label">Wave:</span>
+                <span id="wave">1</span>
+            </div>
+        </div>
+
+        <div id="start-screen" class="screen">
+            <h1>SPACE SHOOTER</h1>
+            <p>Touch and drag to move</p>
+            <p>Auto-fire enabled</p>
+            <button id="start-btn">START GAME</button>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <h1>GAME OVER</h1>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <p>Wave Reached: <span id="final-wave">1</span></p>
+            <button id="restart-btn">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
