@@ -1,0 +1,330 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Game Container */
+#game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Screens */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Start Screen */
+#start-screen h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 200, 100, 0.5);
+}
+
+#start-screen .subtitle {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    color: #aaa;
+    margin-bottom: 2rem;
+}
+
+#start-screen .instructions {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+#start-screen .instructions p {
+    margin: 0.5rem 0;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+/* Buttons */
+.btn-primary {
+    padding: 1rem 2.5rem;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-weight: bold;
+    background: linear-gradient(135deg, #4a9eff, #2d7dd2);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.4);
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.6);
+}
+
+/* Game Screen */
+#game-screen {
+    padding: 0;
+    position: relative;
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#resources {
+    display: flex;
+    gap: 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+#resources span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+}
+
+#day-info {
+    display: flex;
+    gap: 0.5rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+#day-counter {
+    font-weight: bold;
+    color: #ffd700;
+}
+
+#time-indicator {
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    background: rgba(255, 200, 0, 0.3);
+}
+
+#health-bar {
+    position: relative;
+    width: 100px;
+    height: 24px;
+    background: rgba(100, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#health-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff4444, #ff6b6b);
+    transition: width 0.3s;
+}
+
+#health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Game Canvas */
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #2d5a27;
+}
+
+/* Build Menu */
+#build-menu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.build-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+    color: white;
+    border: 2px solid #4a5568;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-width: 70px;
+}
+
+.build-btn:hover,
+.build-btn:active {
+    background: linear-gradient(135deg, #5a6578, #3d4758);
+    border-color: #6b7280;
+}
+
+.build-btn.selected {
+    border-color: #4a9eff;
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+.build-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.build-btn small {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* Game Over Screen */
+#gameover-screen h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: #ff4444;
+    margin-bottom: 1rem;
+}
+
+#gameover-screen #final-score {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-bottom: 2rem;
+    color: #aaa;
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+    #hud {
+        padding: 0.3rem 0.5rem;
+    }
+    
+    #resources {
+        gap: 0.5rem;
+    }
+    
+    #build-menu {
+        padding: 0.3rem;
+    }
+    
+    .build-btn {
+        padding: 0.3rem 0.5rem;
+        min-width: 60px;
+    }
+    
+    #health-bar {
+        width: 80px;
+        height: 20px;
+    }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+    #resources {
+        gap: 1.5rem;
+    }
+    
+    .build-btn {
+        padding: 0.8rem 1.2rem;
+        min-width: 100px;
+    }
+    
+    #health-bar {
+        width: 150px;
+        height: 28px;
+    }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    #hud {
+        padding-top: max(0.5rem, env(safe-area-inset-top));
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    #build-menu {
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
+    }
+}
+
+/* Animation for collecting resources */
+@keyframes float-up {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+.float-text {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: bold;
+    pointer-events: none;
+    animation: float-up 0.8s ease-out forwards;
+    z-index: 100;
+}
+
+/* Night overlay */
+.night-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 50, 0.4);
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 1s;
+}
