@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Survive - A strategy survival game where you gather resources, build defenses, and survive waves of enemies">
+    <title>Survive - Strategy Survival Game</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <h1>🏰 SURVIVE</h1>
+            <p class="subtitle">Gather resources. Build defenses. Survive.</p>
+            <button id="start-btn" class="btn-primary">Start Game</button>
+            <div class="instructions">
+                <p><strong>How to Play:</strong></p>
+                <p>📦 Tap resources to gather them</p>
+                <p>🏗️ Build walls and turrets for defense</p>
+                <p>⚔️ Survive enemy waves each night</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <!-- HUD -->
+            <div id="hud">
+                <div id="resources">
+                    <span id="wood-count">🪵 0</span>
+                    <span id="stone-count">🪨 0</span>
+                    <span id="food-count">🍖 0</span>
+                </div>
+                <div id="day-info">
+                    <span id="day-counter">Day 1</span>
+                    <span id="time-indicator">☀️ Day</span>
+                </div>
+                <div id="health-bar">
+                    <div id="health-fill"></div>
+                    <span id="health-text">❤️ 100</span>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <canvas id="game-canvas"></canvas>
+
+            <!-- Build Menu -->
+            <div id="build-menu">
+                <button class="build-btn" data-building="wall" data-cost-wood="10" data-cost-stone="5">
+                    🧱 Wall<br><small>10🪵 5🪨</small>
+                </button>
+                <button class="build-btn" data-building="turret" data-cost-wood="20" data-cost-stone="15">
+                    🗼 Turret<br><small>20🪵 15🪨</small>
+                </button>
+                <button class="build-btn" data-building="farm" data-cost-wood="15" data-cost-stone="0">
+                    🌾 Farm<br><small>15🪵</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="screen">
+            <h1>💀 GAME OVER</h1>
+            <p id="final-score">You survived 0 days</p>
+            <button id="restart-btn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
