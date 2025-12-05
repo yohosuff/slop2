@@ -67,6 +67,9 @@ class Game {
         this.farmTimer = 0;
         this.healTimer = 0;
         
+        // Cached time for performance
+        this.currentTime = 0;
+        
         this.init();
     }
     
@@ -274,10 +277,8 @@ class Game {
         this.resources[node.type] += amount;
         node.available = false;
         
-        // Schedule respawn
-        setTimeout(() => {
-            node.available = true;
-        }, CONFIG.RESOURCE_RESPAWN_TIME);
+        // Track respawn time using game time instead of setTimeout
+        node.respawnTime = this.currentTime + CONFIG.RESOURCE_RESPAWN_TIME;
         
         // Visual feedback
         const icons = { wood: '🪵', stone: '🪨', food: '🍖' };
@@ -388,6 +389,17 @@ class Game {
     }
     
     update(dt) {
+        // Cache current time once per frame for performance
+        this.currentTime = performance.now();
+        
+        // Update resource respawns
+        for (const node of this.resourceNodes) {
+            if (!node.available && node.respawnTime && this.currentTime >= node.respawnTime) {
+                node.available = true;
+                node.respawnTime = null;
+            }
+        }
+        
         // Update day/night cycle
         this.dayTimer -= dt;
         if (this.dayTimer <= 0) {
@@ -508,9 +520,9 @@ class Game {
                 enemy.x += (dx / len) * enemy.speed * (dt / 16);
                 enemy.y += (dy / len) * enemy.speed * (dt / 16);
             } else {
-                // Attack target
-                if (Date.now() - enemy.lastAttackTime > 1000) {
-                    enemy.lastAttackTime = Date.now();
+                // Attack target using cached time
+                if (this.currentTime - enemy.lastAttackTime > 1000) {
+                    enemy.lastAttackTime = this.currentTime;
                     
                     if (target === this.base) {
                         this.health -= CONFIG.ENEMY_DAMAGE;
@@ -545,8 +557,6 @@ class Game {
     }
     
     updateTurrets(dt) {
-        const now = Date.now();
-        
         for (const building of this.buildings) {
             if (building.type !== 'turret') continue;
             
@@ -562,9 +572,9 @@ class Game {
                 }
             }
             
-            // Fire at enemy
-            if (nearestEnemy && now - building.lastFireTime > CONFIG.TURRET_FIRE_RATE) {
-                building.lastFireTime = now;
+            // Fire at enemy using cached time
+            if (nearestEnemy && this.currentTime - building.lastFireTime > CONFIG.TURRET_FIRE_RATE) {
+                building.lastFireTime = this.currentTime;
                 
                 // Create projectile
                 const dx = nearestEnemy.x - building.x;
