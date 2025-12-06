@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="2-Player Mobile Pong Game">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <title>2-Player Pong</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="score-container">
+            <div id="score1" class="score player1-score">0</div>
+            <div id="score2" class="score player2-score">0</div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div id="start-screen">
+            <h1>2-Player Pong</h1>
+            <p>Player 1: Touch bottom area</p>
+            <p>Player 2: Touch top area</p>
+            <button id="startBtn">Start Game</button>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+</html>
