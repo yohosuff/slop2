@@ -7,6 +7,7 @@ A classic pong game designed for 2 players on a single mobile device. Each playe
 - **Mobile-first design**: Optimized for touch screens
 - **2-player gameplay**: One player on each end of the device
 - **Touch controls**: Intuitive touch-based paddle movement
+- **Fullscreen mode**: Automatically enters fullscreen for maximum visibility
 - **Responsive**: Works in both portrait and landscape orientations
 - **PWA-ready**: Can be added to home screen for app-like experience
 - **Smooth gameplay**: 60 FPS with requestAnimationFrame
@@ -18,10 +19,12 @@ A classic pong game designed for 2 players on a single mobile device. Each playe
 2. Hold the phone vertically (portrait mode recommended)
 3. Player 1 touches the bottom half of the screen to control their paddle
 4. Player 2 touches the top half of the screen to control their paddle
-5. Tap "Start Game" to begin
+5. Tap "Start Game" to begin - the game will enter fullscreen mode
 6. Move your finger left/right to control your paddle
 7. Score points by getting the ball past your opponent's paddle
 8. First player to reach 7 points wins!
+
+**Note**: The game automatically requests fullscreen mode when you start playing to ensure both paddles are fully visible without browser UI interference.
 
 ## Technology Stack
 

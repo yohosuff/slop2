@@ -3,7 +3,7 @@ const config = {
     paddleWidth: 0.15, // Relative to canvas width
     paddleHeight: 0.02, // Relative to canvas height
     paddleSpeed: 0.02, // Relative to canvas width per frame
-    paddleOffset: 0.03, // Padding from edge (relative to canvas height)
+    paddleOffset: 0.05, // Padding from edge (relative to canvas height)
     ballSize: 0.015, // Relative to canvas width
     ballSpeed: 0.008, // Initial speed relative to canvas width
     maxBallSpeed: 0.02,
@@ -47,11 +47,23 @@ function init() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
+    // Listen for fullscreen changes
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    
     // Setup event listeners
     setupControls();
     
     // Start button
     document.getElementById('startBtn').addEventListener('click', startGame);
+}
+
+// Handle fullscreen changes
+function handleFullscreenChange() {
+    // Resize canvas when entering/exiting fullscreen
+    resizeCanvas();
 }
 
 // Resize canvas to fit screen
@@ -195,6 +207,23 @@ function handleMouseUp(e) {
 
 // Start the game
 function startGame() {
+    // Request fullscreen
+    const container = document.getElementById('game-container');
+    if (container.requestFullscreen) {
+        container.requestFullscreen().catch(err => {
+            console.log('Fullscreen request failed:', err);
+        });
+    } else if (container.webkitRequestFullscreen) {
+        // Safari
+        container.webkitRequestFullscreen();
+    } else if (container.mozRequestFullScreen) {
+        // Firefox
+        container.mozRequestFullScreen();
+    } else if (container.msRequestFullscreen) {
+        // IE/Edge
+        container.msRequestFullscreen();
+    }
+    
     // Hide start screen
     document.getElementById('start-screen').classList.add('hidden');
     
