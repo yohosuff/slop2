@@ -1,0 +1,22 @@
+{
+  "name": "Prison Escape",
+  "short_name": "Prison Escape",
+  "description": "A top-down stealth game where you escape from prison by collecting keys and avoiding guards",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%231a1a1a' width='192' height='192'/%3E%3Ccircle cx='96' cy='96' r='60' fill='%2300ff00'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%231a1a1a' width='512' height='512'/%3E%3Ccircle cx='256' cy='256' r='150' fill='%2300ff00'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
