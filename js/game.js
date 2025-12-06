@@ -285,6 +285,16 @@ function update() {
         game.ball.x = Math.max(game.ball.radius, Math.min(game.width - game.ball.radius, game.ball.x));
     }
     
+    // Helper function to increase ball speed after paddle hit
+    const increaseBallSpeed = () => {
+        const speed = Math.sqrt(game.ball.vx ** 2 + game.ball.vy ** 2);
+        const maxSpeed = game.width * config.maxBallSpeed;
+        if (speed < maxSpeed) {
+            game.ball.vx *= config.speedIncrease;
+            game.ball.vy *= config.speedIncrease;
+        }
+    };
+    
     // Ball collision with paddle 1 (bottom)
     if (game.ball.vy > 0 && 
         game.ball.y + game.ball.radius >= game.paddle1.y &&
@@ -300,13 +310,7 @@ function update() {
         game.ball.vx += hitPos * game.width * config.ballSpeed * 0.5;
         game.ball.vx += game.paddle1.vx * 0.5;
         
-        // Increase speed slightly
-        const speed = Math.sqrt(game.ball.vx ** 2 + game.ball.vy ** 2);
-        const maxSpeed = game.width * config.maxBallSpeed;
-        if (speed < maxSpeed) {
-            game.ball.vx *= config.speedIncrease;
-            game.ball.vy *= config.speedIncrease;
-        }
+        increaseBallSpeed();
     }
     
     // Ball collision with paddle 2 (top)
@@ -324,13 +328,7 @@ function update() {
         game.ball.vx += hitPos * game.width * config.ballSpeed * 0.5;
         game.ball.vx += game.paddle2.vx * 0.5;
         
-        // Increase speed slightly
-        const speed = Math.sqrt(game.ball.vx ** 2 + game.ball.vy ** 2);
-        const maxSpeed = game.width * config.maxBallSpeed;
-        if (speed < maxSpeed) {
-            game.ball.vx *= config.speedIncrease;
-            game.ball.vy *= config.speedIncrease;
-        }
+        increaseBallSpeed();
     }
     
     // Check for scoring
