@@ -47,9 +47,13 @@ class Player {
 
         // Handle touch input
         if (game.input.touchX !== null && game.input.touchY !== null) {
-            const angleToTouch = Math.atan2(game.input.touchY - this.y, game.input.touchX - this.x);
-            dx = Math.cos(angleToTouch) * speed;
-            dy = Math.sin(angleToTouch) * speed;
+            const distToTouch = Math.hypot(game.input.touchX - this.x, game.input.touchY - this.y);
+            // Only move if touch point is far enough away to avoid oscillation
+            if (distToTouch > speed * 2) {
+                const angleToTouch = Math.atan2(game.input.touchY - this.y, game.input.touchX - this.x);
+                dx = Math.cos(angleToTouch) * speed;
+                dy = Math.sin(angleToTouch) * speed;
+            }
         } else {
             // Handle keyboard input
             if (game.input.up) dy -= speed;
@@ -60,8 +64,9 @@ class Player {
 
         // Normalize diagonal movement
         if (dx !== 0 && dy !== 0) {
-            dx *= 0.707;
-            dy *= 0.707;
+            const diagonalFactor = Math.SQRT1_2; // 1/sqrt(2) ≈ 0.707
+            dx *= diagonalFactor;
+            dy *= diagonalFactor;
         }
 
         // Try to move and check collisions
