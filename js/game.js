@@ -25,7 +25,6 @@ const game = {
     player: null,
     enemies: [],
     roadMarkings: [],
-    roadOffset: 0,
     keys: {},
     touchLeft: false,
     touchRight: false,
@@ -317,7 +316,6 @@ function resetGame() {
     game.player = new Player();
     game.enemies = [];
     game.roadMarkings = [];
-    game.roadOffset = 0;
     
     // Initialize road markings
     for (let i = 0; i < CONFIG.canvasHeight; i += 80) {
