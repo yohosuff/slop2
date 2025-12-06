@@ -209,19 +209,24 @@ function handleMouseUp(e) {
 function startGame() {
     // Request fullscreen
     const container = document.getElementById('game-container');
-    if (container.requestFullscreen) {
-        container.requestFullscreen().catch(err => {
-            console.log('Fullscreen request failed:', err);
-        });
-    } else if (container.webkitRequestFullscreen) {
-        // Safari
-        container.webkitRequestFullscreen();
-    } else if (container.mozRequestFullScreen) {
-        // Firefox
-        container.mozRequestFullScreen();
-    } else if (container.msRequestFullscreen) {
-        // IE/Edge
-        container.msRequestFullscreen();
+    
+    try {
+        if (container.requestFullscreen) {
+            container.requestFullscreen().catch(err => {
+                console.log('Fullscreen request failed:', err);
+            });
+        } else if (container.webkitRequestFullscreen) {
+            // Safari
+            container.webkitRequestFullscreen();
+        } else if (container.mozRequestFullScreen) {
+            // Firefox
+            container.mozRequestFullScreen();
+        } else if (container.msRequestFullscreen) {
+            // IE/Edge
+            container.msRequestFullscreen();
+        }
+    } catch (err) {
+        console.log('Fullscreen not supported or failed:', err);
     }
     
     // Hide start screen
