@@ -69,12 +69,19 @@ function resizeCanvas() {
 
 // Update game dimensions when canvas resizes
 function updateGameDimensions() {
+    const paddleWidth = game.width * config.paddleWidth;
+    const paddleHeight = game.height * config.paddleHeight;
+    const paddleOffset = game.height * config.paddleOffset;
+    
     game.ball.radius = game.width * config.ballSize;
     
-    // Keep paddles within bounds
-    const paddleWidth = game.width * config.paddleWidth;
+    // Keep paddles within bounds (X-axis)
     game.paddle1.x = Math.max(paddleWidth / 2, Math.min(game.width - paddleWidth / 2, game.paddle1.x));
     game.paddle2.x = Math.max(paddleWidth / 2, Math.min(game.width - paddleWidth / 2, game.paddle2.x));
+    
+    // Update paddle Y positions to maintain offset from edges
+    game.paddle1.y = game.height - paddleHeight - paddleOffset;
+    game.paddle2.y = paddleOffset;
 }
 
 // Setup touch and mouse controls
