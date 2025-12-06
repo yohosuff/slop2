@@ -3,6 +3,7 @@ const config = {
     paddleWidth: 0.15, // Relative to canvas width
     paddleHeight: 0.02, // Relative to canvas height
     paddleSpeed: 0.02, // Relative to canvas width per frame
+    paddleOffset: 0.03, // Padding from edge (relative to canvas height)
     ballSize: 0.015, // Relative to canvas width
     ballSpeed: 0.008, // Initial speed relative to canvas width
     maxBallSpeed: 0.02,
@@ -207,14 +208,15 @@ function startGame() {
 function resetRound() {
     const paddleWidth = game.width * config.paddleWidth;
     const paddleHeight = game.height * config.paddleHeight;
+    const paddleOffset = game.height * config.paddleOffset;
     
     // Reset paddles
     game.paddle1.x = game.width / 2;
-    game.paddle1.y = game.height - paddleHeight;
+    game.paddle1.y = game.height - paddleHeight - paddleOffset;
     game.paddle1.vx = 0;
     
     game.paddle2.x = game.width / 2;
-    game.paddle2.y = 0;
+    game.paddle2.y = paddleOffset;
     game.paddle2.vx = 0;
     
     // Reset ball
