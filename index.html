@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Fast-paced top-down racing game">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <title>Top Down Racer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-overlay">
+            <div id="score">Score: <span id="scoreValue">0</span></div>
+            <div id="speed">Speed: <span id="speedValue">0</span> mph</div>
+        </div>
+        <div id="start-screen" class="screen">
+            <h1>Top Down Racer</h1>
+            <p>Dodge traffic and race to the finish!</p>
+            <div class="controls-info">
+                <p><strong>Desktop:</strong> Arrow keys or A/D to steer</p>
+                <p><strong>Mobile:</strong> Touch left/right side of screen</p>
+            </div>
+            <button id="startBtn" class="btn">Start Race</button>
+        </div>
+        <div id="game-over-screen" class="screen hidden">
+            <h1>Game Over!</h1>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Distance: <span id="finalDistance">0</span>m</p>
+            <button id="restartBtn" class="btn">Play Again</button>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+</html>
