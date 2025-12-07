@@ -1,0 +1,11 @@
+{
+  "name": "Maze Escape",
+  "short_name": "Maze Escape",
+  "description": "Navigate through the maze to find the exit!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2c3e50",
+  "theme_color": "#2c3e50",
+  "orientation": "any",
+  "icons": []
+}
