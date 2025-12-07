@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Simple Real-Time Strategy Game">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>RTS Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header -->
+        <header id="game-header">
+            <div class="resource-panel">
+                <div class="resource">
+                    <span class="resource-icon">💎</span>
+                    <span id="player-resources">100</span>
+                </div>
+                <div class="resource">
+                    <span class="resource-icon">👥</span>
+                    <span id="player-units">0</span>/<span id="max-units">10</span>
+                </div>
+            </div>
+            <div class="game-status">
+                <span id="game-status-text">Collect resources and destroy enemy base!</span>
+            </div>
+        </header>
+
+        <!-- Game Canvas -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Control Panel -->
+        <div id="control-panel">
+            <button id="btn-create-worker" class="control-btn" title="Create Worker (Cost: 50)">
+                <span class="btn-icon">👷</span>
+                <span class="btn-label">Worker</span>
+                <span class="btn-cost">50</span>
+            </button>
+            <button id="btn-create-soldier" class="control-btn" title="Create Soldier (Cost: 75)">
+                <span class="btn-icon">⚔️</span>
+                <span class="btn-label">Soldier</span>
+                <span class="btn-cost">75</span>
+            </button>
+            <button id="btn-pause" class="control-btn secondary">
+                <span class="btn-icon">⏸️</span>
+                <span class="btn-label">Pause</span>
+            </button>
+            <button id="btn-restart" class="control-btn secondary">
+                <span class="btn-icon">🔄</span>
+                <span class="btn-label">Restart</span>
+            </button>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over" class="hidden">
+            <div class="game-over-content">
+                <h2 id="game-over-title">Victory!</h2>
+                <p id="game-over-message">You have destroyed the enemy base!</p>
+                <button id="btn-play-again" class="primary-btn">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div id="instructions" class="info-panel">
+            <h3>How to Play:</h3>
+            <ul>
+                <li>👷 Workers collect resources from deposits (💎)</li>
+                <li>⚔️ Soldiers attack enemy units and base</li>
+                <li>Tap/click to select units, tap/click map to move them</li>
+                <li>Destroy the enemy base (🏰) to win!</li>
+                <li>Protect your base (🏠) from enemies!</li>
+            </ul>
+            <button id="btn-close-instructions" class="secondary-btn">Got it!</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
