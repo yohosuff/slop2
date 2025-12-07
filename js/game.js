@@ -1,3 +1,11 @@
+// Game constants
+const SWIPE_THRESHOLD = 30;
+const MAX_HEIGHT_RATIO = 0.6;
+const WALL_LINE_WIDTH = 3;
+const PLAYER_RADIUS_RATIO = 0.35;
+const EXIT_PADDING_RATIO = 0.1;
+const EXIT_SIZE_RATIO = 0.8;
+
 // Game state
 const game = {
     canvas: null,
@@ -12,8 +20,7 @@ const game = {
     startTime: 0,
     animationId: null,
     touchStartX: 0,
-    touchStartY: 0,
-    swipeThreshold: 30
+    touchStartY: 0
 };
 
 // Initialize the game
@@ -61,7 +68,7 @@ function init() {
 // Resize canvas to maintain square aspect ratio
 function resizeCanvas() {
     const container = game.canvas.parentElement;
-    const size = Math.min(container.clientWidth, window.innerHeight * 0.6);
+    const size = Math.min(container.clientWidth, window.innerHeight * MAX_HEIGHT_RATIO);
     game.canvas.width = size;
     game.canvas.height = size;
     game.cellSize = size / game.cols;
@@ -220,7 +227,7 @@ function handleSwipe(endX, endY) {
     const dx = endX - game.touchStartX;
     const dy = endY - game.touchStartY;
     
-    if (Math.abs(dx) > game.swipeThreshold || Math.abs(dy) > game.swipeThreshold) {
+    if (Math.abs(dx) > SWIPE_THRESHOLD || Math.abs(dy) > SWIPE_THRESHOLD) {
         if (Math.abs(dx) > Math.abs(dy)) {
             // Horizontal swipe
             movePlayer(dx > 0 ? 1 : -1, 0);
@@ -313,7 +320,7 @@ function draw() {
     
     // Draw maze
     ctx.strokeStyle = '#2c3e50';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = WALL_LINE_WIDTH;
     
     for (let y = 0; y < game.rows; y++) {
         for (let x = 0; x < game.cols; x++) {
@@ -346,15 +353,15 @@ function draw() {
     ctx.fillStyle = '#27ae60';
     const exitX = game.exit.x * cellSize;
     const exitY = game.exit.y * cellSize;
-    ctx.fillRect(exitX + cellSize * 0.1, exitY + cellSize * 0.1, 
-                 cellSize * 0.8, cellSize * 0.8);
+    ctx.fillRect(exitX + cellSize * EXIT_PADDING_RATIO, exitY + cellSize * EXIT_PADDING_RATIO, 
+                 cellSize * EXIT_SIZE_RATIO, cellSize * EXIT_SIZE_RATIO);
     
     // Draw player
     ctx.fillStyle = '#667eea';
     const playerX = game.player.x * cellSize;
     const playerY = game.player.y * cellSize;
     ctx.beginPath();
-    ctx.arc(playerX + cellSize / 2, playerY + cellSize / 2, cellSize * 0.35, 0, Math.PI * 2);
+    ctx.arc(playerX + cellSize / 2, playerY + cellSize / 2, cellSize * PLAYER_RADIUS_RATIO, 0, Math.PI * 2);
     ctx.fill();
 }
 
