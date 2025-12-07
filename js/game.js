@@ -114,6 +114,7 @@ class Unit {
         this.targetEnemy = null;
         this.lastAttack = 0;
         this.lastDamageTime = 0;
+        this.inCombat = false;
     }
 
     update() {
@@ -164,14 +165,18 @@ class Unit {
             );
 
             if (enemyDist < CONFIG.ATTACK_RANGE) {
-                this.targetX = this.x;
-                this.targetY = this.y;
+                if (!this.inCombat) {
+                    this.targetX = this.x;
+                    this.targetY = this.y;
+                    this.inCombat = true;
+                }
                 const now = Date.now();
                 if (now - this.lastAttack > CONFIG.ATTACK_COOLDOWN) {
                     this.attack(this.targetEnemy);
                     this.lastAttack = now;
                 }
             } else {
+                this.inCombat = false;
                 this.targetX = this.targetEnemy.x;
                 this.targetY = this.targetEnemy.y;
             }
@@ -179,6 +184,7 @@ class Unit {
             // Check if target is dead
             if (this.targetEnemy.hp <= 0) {
                 this.targetEnemy = null;
+                this.inCombat = false;
             }
         }
     }
@@ -426,14 +432,18 @@ function createUnit(type) {
 
 function updateAI() {
     // Simple AI: Create units and attack
-    if (game.enemy.resources >= CONFIG.SOLDIER_COST && game.enemy.units.length < CONFIG.MAX_UNITS) {
-        const spawnX = game.enemy.base.x - 50;
-        const spawnY = game.enemy.base.y + 50;
-        
+    if (game.enemy.units.length < CONFIG.MAX_UNITS) {
         const type = Math.random() > 0.3 ? 'soldier' : 'worker';
-        const unit = new Unit(spawnX, spawnY, type, false);
-        game.enemy.units.push(unit);
-        game.enemy.resources -= type === 'worker' ? CONFIG.WORKER_COST : CONFIG.SOLDIER_COST;
+        const cost = type === 'worker' ? CONFIG.WORKER_COST : CONFIG.SOLDIER_COST;
+        
+        if (game.enemy.resources >= cost) {
+            const spawnX = game.enemy.base.x - 50;
+            const spawnY = game.enemy.base.y + 50;
+            
+            const unit = new Unit(spawnX, spawnY, type, false);
+            game.enemy.units.push(unit);
+            game.enemy.resources -= cost;
+        }
     }
 
     // AI unit behavior
@@ -473,7 +483,8 @@ function gameLoop(currentTime) {
         }
 
         // Update all units
-        [...game.player.units, ...game.enemy.units].forEach(unit => unit.update());
+        game.player.units.forEach(unit => unit.update());
+        game.enemy.units.forEach(unit => unit.update());
 
         // Remove dead units
         game.player.units = game.player.units.filter(unit => unit.hp > 0);
