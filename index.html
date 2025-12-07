@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Street Fighter style combat game - Pure HTML5 mobile game">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Street Fighter">
+    <link rel="manifest" href="manifest.json">
+    <title>Street Fighter - Combat Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-header">
+            <div class="player-info player1-info">
+                <div class="player-name">PLAYER 1</div>
+                <div class="health-bar-container">
+                    <div id="player1-health" class="health-bar"></div>
+                </div>
+            </div>
+            <div id="timer">99</div>
+            <div class="player-info player2-info">
+                <div class="player-name">PLAYER 2</div>
+                <div class="health-bar-container">
+                    <div id="player2-health" class="health-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+
+        <div id="controls">
+            <div class="control-section player1-controls">
+                <div class="dpad">
+                    <button class="control-btn" data-player="1" data-action="left">←</button>
+                    <button class="control-btn" data-player="1" data-action="right">→</button>
+                    <button class="control-btn" data-player="1" data-action="jump">↑</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="control-btn attack-btn" data-player="1" data-action="punch">PUNCH</button>
+                    <button class="control-btn attack-btn" data-player="1" data-action="kick">KICK</button>
+                    <button class="control-btn" data-player="1" data-action="block">BLOCK</button>
+                </div>
+            </div>
+            <div class="control-section player2-controls">
+                <div class="dpad">
+                    <button class="control-btn" data-player="2" data-action="left">←</button>
+                    <button class="control-btn" data-player="2" data-action="right">→</button>
+                    <button class="control-btn" data-player="2" data-action="jump">↑</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="control-btn attack-btn" data-player="2" data-action="punch">PUNCH</button>
+                    <button class="control-btn attack-btn" data-player="2" data-action="kick">KICK</button>
+                    <button class="control-btn" data-player="2" data-action="block">BLOCK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over" class="hidden">
+            <h1 id="winner-text"></h1>
+            <button id="restart-btn">PLAY AGAIN</button>
+        </div>
+
+        <div id="start-screen">
+            <h1>STREET FIGHTER</h1>
+            <p>Combat Game</p>
+            <button id="start-btn">START GAME</button>
+            <div class="instructions">
+                <h3>Desktop Controls:</h3>
+                <p>Player 1: A/D (move), W (jump), Q (punch), E (kick), S (block)</p>
+                <p>Player 2: ←/→ (move), ↑ (jump), O (punch), P (kick), ↓ (block)</p>
+                <h3>Mobile: Use on-screen buttons</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
