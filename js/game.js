@@ -300,12 +300,14 @@ function resizeCanvas() {
 function setupControls() {
     // Keyboard controls
     window.addEventListener('keydown', (e) => {
-        game.keys[e.key.toLowerCase()] = true;
+        const key = e.key.startsWith('Arrow') ? e.key : e.key.toLowerCase();
+        game.keys[key] = true;
         e.preventDefault();
     });
     
     window.addEventListener('keyup', (e) => {
-        game.keys[e.key.toLowerCase()] = false;
+        const key = e.key.startsWith('Arrow') ? e.key : e.key.toLowerCase();
+        game.keys[key] = false;
         e.preventDefault();
     });
     
