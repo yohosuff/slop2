@@ -170,9 +170,9 @@ class NavmeshDemo {
         
         // Draw each triangle
         for (let i = 0; i < this.triangles.length; i += 3) {
-            const idx1 = this.triangles[i];
-            const idx2 = this.triangles[i + 1];
-            const idx3 = this.triangles[i + 2];
+            const idx1 = this.triangles[i] * 2;
+            const idx2 = this.triangles[i + 1] * 2;
+            const idx3 = this.triangles[i + 2] * 2;
             
             const x1 = vertices[idx1];
             const y1 = vertices[idx1 + 1];
