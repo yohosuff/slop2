@@ -1,0 +1,133 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: #0f0f1e;
+    color: #ffffff;
+}
+
+/* Canvas container */
+#canvasContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Canvas */
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* Prevent default touch behaviors */
+    cursor: pointer;
+}
+
+/* Header */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #00adb5;
+    margin: 0;
+}
+
+header p {
+    font-size: 0.875rem;
+    color: #aaaaaa;
+    margin: 0.25rem 0 0 0;
+}
+
+/* Controls overlay for mobile */
+.controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    z-index: 10;
+    display: none;
+}
+
+.controls p {
+    font-size: 0.875rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Show controls on larger screens */
+@media (min-width: 768px) {
+    .controls {
+        display: block;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    header h1 {
+        font-size: 1.25rem;
+    }
+    
+    header p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Landscape mode optimization */
+@media (orientation: landscape) and (max-height: 500px) {
+    header {
+        padding: 0.5rem;
+    }
+    
+    header h1 {
+        font-size: 1rem;
+    }
+    
+    header p {
+        display: none;
+    }
+}
+
+/* Loading state */
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #00adb5;
+    z-index: 100;
+}
+
+/* Hide loading after page loads */
+body.loaded .loading {
+    display: none;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Navmesh triangulation demo for 2D level geometry with randomized walls and buildings">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <!-- PWA Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Navmesh Demo">
+    <link rel="manifest" href="manifest.json">
+    
+    <title>Navmesh Triangulation Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="loading">Loading...</div>
+    
+    <header>
+        <h1>🗺️ Navmesh Triangulation Demo</h1>
+        <p>2D Level Geometry with Earcut Triangulation</p>
+    </header>
+    
+    <div id="canvasContainer">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    
+    <div class="controls">
+        <p>Click/Tap to regenerate | T: Toggle triangles | P: Toggle polygons | R: Regenerate</p>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/earcut.js"></script>
+    <script src="js/navmesh-demo.js"></script>
+    
+    <script>
+        // Remove loading indicator when page is fully loaded
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
