@@ -1,0 +1,54 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: #0f0f1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Canvas styles */
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* Prevent default touch behaviors */
+    cursor: pointer;
+    background: #1a1a2e;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    body {
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+}
+
+/* Landscape mode */
+@media (orientation: landscape) and (max-height: 500px) {
+    #gameCanvas {
+        max-height: 100vh;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #gameCanvas {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}

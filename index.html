@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <title>Navmesh Demo - Earcut Triangulation</title>
+    <meta name="description" content="Interactive demo showing randomized 2D level geometry with earcut-based navmesh triangulation">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    
+    <!-- Load earcut library first -->
+    <script src="js/earcut.js"></script>
+    
+    <!-- Load main game script -->
+    <script src="js/game.js"></script>
+</body>
+</html>
