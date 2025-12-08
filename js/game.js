@@ -9,7 +9,7 @@ class NavmeshDemo {
         // State
         this.levelPolygon = [];
         this.navmeshTriangles = [];
-        this.animationFrame = null;
+        this.animationFrameId = null;
         
         // Rendering options
         this.showLevel = true;
@@ -91,7 +91,8 @@ class NavmeshDemo {
         }
         
         try {
-            // Earcut returns indices into the vertex array
+            // Earcut expects a flat array of coordinates [x1, y1, x2, y2, ...]
+            // and returns triangle indices [i1, i2, i3, i4, i5, i6, ...]
             const indices = earcut(this.levelPolygon);
             
             // Convert indices to actual triangle coordinates
@@ -131,7 +132,15 @@ class NavmeshDemo {
         this.renderUI();
         
         // Continue loop
-        this.animationFrame = requestAnimationFrame(() => this.render());
+        this.animationFrameId = requestAnimationFrame(() => this.render());
+    }
+    
+    cleanup() {
+        // Cancel animation frame if needed
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+            this.animationFrameId = null;
+        }
     }
     
     renderNavmesh() {
