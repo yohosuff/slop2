@@ -1,0 +1,22 @@
+{
+  "name": "Navmesh Triangulation Demo",
+  "short_name": "Navmesh Demo",
+  "description": "2D level geometry navmesh triangulation using Earcut",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#00adb5",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
